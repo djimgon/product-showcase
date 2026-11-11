@@ -79,3 +79,37 @@ function renderProduct(product: Product): string {
             throw new Error(`Unknown product type: ${JSON.stringify(product)}`);
     }
 }
+
+const products = new Collection<Product>([
+    {
+        type: 'book',
+        id: 'book-001',
+        price: 29.99,
+        title: 'Clean Code',
+        author: 'Robert C. Martin'
+    },
+    {
+        type: 'electronics',
+        id: 'electronics-001',
+        price: 1299,
+        item: 'Laptop',
+        model: 'MacBook Pro',
+        warranty: 2
+    },
+    {
+        type: 'clothing',
+        id: 'clothing-001',
+        price: 49.99,
+        item: 'T-Shirt',
+        brand: 'Nike',
+        size: 'M'
+    }
+]);
+
+console.log(products.getAll());
+
+const books = products.filter(
+    (product) => product.type === 'book'
+);
+
+console.log(books);
