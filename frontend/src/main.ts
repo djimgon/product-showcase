@@ -25,3 +25,5 @@ interface Clothing extends Item {
     brand: string;
     size?: 'S' | 'M' | 'L';
 }
+
+type Product = Book | Electronics | Clothing;
