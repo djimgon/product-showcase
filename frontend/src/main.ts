@@ -27,3 +27,11 @@ interface Clothing extends Item {
 }
 
 type Product = Book | Electronics | Clothing;
+
+class Collection<T> {
+    constructor(public items: T[]) {}
+
+    getAll(): T[] {
+        return this.items;
+    }
+}
