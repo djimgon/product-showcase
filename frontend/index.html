@@ -1,13 +1,33 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>app</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <title>Product Showcase</title>
+</head>
+<body>
+
+<main class="container">
+
+    <header class="page-header">
+        <span class="eyebrow">CURATED COLLECTION</span>
+        <h1>Product Showcase</h1>
+        <p>Explore our collection of books, electronics, and clothing.</p>
+    </header>
+
+    <nav class="buttons" aria-label="Product categories">
+        <button id="all" class="active" type="button">All Products</button>
+        <button id="books" type="button">Books</button>
+        <button id="electronics" type="button">Electronics</button>
+        <button id="clothing" type="button">Clothing</button>
+    </nav>
+
+    <section class="products-section" aria-label="Products">
+        <div id="output" class="product-list"></div>
+    </section>
+
+</main>
+
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>
