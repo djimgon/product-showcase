@@ -29,7 +29,8 @@ interface Clothing extends Item {
 type Product = Book | Electronics | Clothing;
 
 class Collection<T> {
-    constructor(public items: T[]) {}
+    constructor(public items: T[]) {
+    }
 
     getAll(): T[] {
         return this.items;
@@ -37,5 +38,44 @@ class Collection<T> {
 
     filter(callback: (item: T) => boolean): T[] {
         return this.items.filter(callback);
+    }
+}
+
+// Отдельная функция, вне класса
+function renderProduct(product: Product): string {
+    switch (product.type) {
+        case 'book':
+            return `
+                <div class="item" id="${product.id}">
+                    <h3>Book: ${product.title} by ${product.author}</h3>
+                    <p class="price">${product.price}</p>
+                </div>
+            `;
+
+        case 'electronics':
+            return `
+                <div class="item" id="${product.id}">
+                    <h3>
+                        Electronics: ${product.item} - ${product.model}
+                        ${product.warranty !== undefined
+                        ? ` - Warranty: ${product.warranty} year(s)`
+                        : ''}
+                    </h3>
+                    <p class="price">${product.price}</p>
+                </div>
+            `;
+
+        case 'clothing':
+            return `
+                <div class="item" id="${product.id}">
+                    <h3>Clothing: ${product.item} by ${product.brand}${product.size !== undefined
+                        ? ` - Size ${product.size}`
+                        : ''}</h3>
+                    <p class="price">${product.price}</p>
+                </div>
+            `;
+
+        default:
+            throw new Error(`Unknown product type: ${JSON.stringify(product)}`);
     }
 }
