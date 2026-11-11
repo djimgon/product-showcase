@@ -14,7 +14,7 @@ The project demonstrates practical TypeScript development, generic classes, inte
 
 ## 📸 Preview
 
-![Product Showcase — Desktop Preview](docs/screenshots/product-showcase.png)
+![Product Showcase — Desktop Preview](frontend/docs/screenshots/product-showcase.png)
 
 A responsive product catalog featuring dynamic product cards, category-based filtering, and a clean, modern interface.
 
