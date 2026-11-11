@@ -30,3 +30,6 @@ frontend-yarn-install:
 
 frontend-yarn-add:
 	docker-compose run --rm frontend-node-cli yarn add
+
+frontend-create:
+	docker-compose run --rm frontend-node-cli yarn create vite . --template vanilla-ts
