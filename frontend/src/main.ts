@@ -28,24 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
     showProducts();
     setActiveButton('all');
 
-    document.querySelector('#all')?.addEventListener('click', () => {
-        showProducts();
-        setActiveButton('all');
-    });
+    const buttons = document.querySelector('.buttons');
 
-    document.querySelector('#books')?.addEventListener('click', () => {
-        showProducts('book');
-        setActiveButton('books');
-    });
+    buttons?.addEventListener('click', (event) => {
+        const target = event.target;
 
-    document.querySelector('#electronics')?.addEventListener('click', () => {
-        showProducts('electronics');
-        setActiveButton('electronics');
-    });
+        if (!(target instanceof HTMLButtonElement)) {
+            return;
+        }
 
-    document.querySelector('#clothing')?.addEventListener('click', () => {
-        showProducts('clothing');
-        setActiveButton('clothing');
+        const categoryMap: Record<string, Product['type'] | undefined> = {
+            all: undefined,
+            books: 'book',
+            electronics: 'electronics',
+            clothing: 'clothing'
+        };
+
+        if (!Object.hasOwn(categoryMap, target.id)) {
+            return;
+        }
+
+        showProducts(categoryMap[target.id]);
+        setActiveButton(target.id);
     });
 });
 
