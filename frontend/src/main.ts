@@ -54,16 +54,13 @@ function renderProduct(product: Product): string {
 
         case 'electronics':
             return `
-                <div class="item" id="${product.id}">
-                    <h3>
-                        Electronics: ${product.item} - ${product.model}
-                        ${product.warranty !== undefined
-                        ? ` - Warranty: ${product.warranty} year(s)`
-                        : ''}
-                    </h3>
-                    <p class="price">${product.price}</p>
-                </div>
-            `;
+            <div class="item" id="${product.id}">
+                <h3>Electronics: ${product.item} - ${product.model}${product.warranty !== undefined
+                    ? ` - Warranty: ${product.warranty} year(s)`
+                    : ''}</h3>
+                <p class="price">${product.price}</p>
+            </div>
+        `;
 
         case 'clothing':
             return `
@@ -122,4 +119,37 @@ function showProducts(type?: Product['type']): void {
         .join('');
 
     output.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showProducts();
+    setActiveButton('all');
+
+    document.querySelector('#all')?.addEventListener('click', () => {
+        showProducts();
+        setActiveButton('all');
+    });
+
+    document.querySelector('#books')?.addEventListener('click', () => {
+        showProducts('book');
+        setActiveButton('books');
+    });
+
+    document.querySelector('#electronics')?.addEventListener('click', () => {
+        showProducts('electronics');
+        setActiveButton('electronics');
+    });
+
+    document.querySelector('#clothing')?.addEventListener('click', () => {
+        showProducts('clothing');
+        setActiveButton('clothing');
+    });
+});
+
+function setActiveButton(activeId: string): void {
+    const buttons = document.querySelectorAll<HTMLButtonElement>('.buttons button');
+
+    buttons.forEach(button => {
+        button.classList.toggle('active', button.id === activeId);
+    });
 }
