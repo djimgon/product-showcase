@@ -1,19 +1,6 @@
 import './style.css'
 import type { Product } from './types/product';
-
-
-class Collection<T> {
-    constructor(public items: T[]) {
-    }
-
-    getAll(): T[] {
-        return this.items;
-    }
-
-    filter(callback: (item: T) => boolean): T[] {
-        return this.items.filter(callback);
-    }
-}
+import { Collection } from './models/Collection';
 
 // Отдельная функция, вне класса
 function renderProduct(product: Product): string {
