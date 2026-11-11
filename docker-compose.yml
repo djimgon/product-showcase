@@ -1,0 +1,30 @@
+version: "3.7"
+services:
+  gateway:
+    build:
+      context: gateway/docker
+      dockerfile: development/nginx/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - frontend
+
+  frontend:
+    build:
+      context: frontend/docker/development/nginx
+    depends_on:
+      - frontend-node
+
+  frontend-node:
+    build:
+      context: frontend/docker/development/node
+    volumes:
+      - ./frontend:/app
+    command: yarn dev --host 0.0.0.0
+    tty: true
+
+  frontend-node-cli:
+    build:
+      context: frontend/docker/development/node
+    volumes:
+      - ./frontend:/app
