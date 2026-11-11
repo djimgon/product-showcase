@@ -106,10 +106,20 @@ const products = new Collection<Product>([
     }
 ]);
 
-console.log(products.getAll());
+const output = document.querySelector<HTMLDivElement>('#output');
 
-const books = products.filter(
-    (product) => product.type === 'book'
-);
+function showProducts(type?: Product['type']): void {
+    if (!output) {
+        return;
+    }
 
-console.log(books);
+    const filteredProducts = type
+        ? products.filter(product => product.type === type)
+        : products.getAll();
+
+    const html = filteredProducts
+        .map(renderProduct)
+        .join('');
+
+    output.innerHTML = html;
+}
