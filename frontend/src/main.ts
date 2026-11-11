@@ -2,42 +2,7 @@ import './style.css'
 import type { Product } from './types/product';
 import { Collection } from './models/Collection';
 import { productsData } from './data/products';
-
-// Отдельная функция, вне класса
-function renderProduct(product: Product): string {
-    switch (product.type) {
-        case 'book':
-            return `
-                <div class="item" id="${product.id}">
-                    <h3>Book: ${product.title} by ${product.author}</h3>
-                    <p class="price">${product.price}</p>
-                </div>
-            `;
-
-        case 'electronics':
-            return `
-            <div class="item" id="${product.id}">
-                <h3>Electronics: ${product.item} - ${product.model}${product.warranty !== undefined
-                    ? ` - Warranty: ${product.warranty} year(s)`
-                    : ''}</h3>
-                <p class="price">${product.price}</p>
-            </div>
-        `;
-
-        case 'clothing':
-            return `
-                <div class="item" id="${product.id}">
-                    <h3>Clothing: ${product.item} by ${product.brand}${product.size !== undefined
-                        ? ` - Size ${product.size}`
-                        : ''}</h3>
-                    <p class="price">${product.price}</p>
-                </div>
-            `;
-
-        default:
-            throw new Error(`Unknown product type: ${JSON.stringify(product)}`);
-    }
-}
+import { renderProduct } from './components/ProductCard';
 
 const products = new Collection<Product>(productsData);
 
